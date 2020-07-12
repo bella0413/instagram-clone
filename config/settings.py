@@ -127,3 +127,5 @@ MEDIA_URL = '/res/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #MEDIA_URL을 설정하고 ROOT룰 잡아주어서 그곳에 사진이 저장되도록 함
+
+AUTH_USER_MODEL = 'accounts.User'

@@ -1,14 +1,30 @@
-from django.shortcuts import render,redirect
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.shortcuts import render, redirect, get_object_or_404
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib import auth
 from django.contrib import messages
 # Create your views here.
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('../../')
+        else:
+            # return redirect('signup')
+            return render(request, 'accounts/login.html', {'error': '아이디나 패스워드 오류입니다'})
+    else:
+        return render(request, 'accounts/login.html')
 
 
 def signup(request):
     if request.method == "POST":
         if request.POST["username"] != "" and request.POST["password"] != "":
-            user = User.objects.create_user(
+            user = get_user_model().objects.create_user(
                 username=request.POST["username"],
                 password=request.POST["password"])
             auth.login(request, user)
@@ -18,3 +34,13 @@ def signup(request):
             return render(request, 'accounts/signup.html', {'signUpFailed': True})
     else:
         return render(request, 'accounts/signup.html', {'signUpFailed': False})
+
+
+def following(request):
+    # user_obj = get_object_or_404(get_user_model(), pk=user_id)
+    # if request.user in user_obj.followers.all():
+    #     user_obj.followers.remove(request.user)
+    # else:
+    #     user_obj.followers.add(request.user)
+    print(request.user.followings.all())
+    return render(request, 'accounts/following.html')
