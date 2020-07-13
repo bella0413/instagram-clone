@@ -5,14 +5,13 @@
 
 {% block content %}
 <head xmlns:align-text="http://www.w3.org/1999/xhtml">
-<!--    <link rel="stylesheet" href="signup.css">-->
-<!--        <link rel="stylesheet" href="{% static 'css/signup.css' %}">-->
+
 </head>
 
 <div class="row" style="margin:30px auto">
   <div class="col"></div>
   <div class="col-6">
-    <div class="alert alert-primary" role="alert">
+    <div class="alert alert-info" role="alert">
       로그아웃되었습니다.
     </div>
     <a href="{% url 'accounts:login' %}" class="btn btn-outline-success">Login</a>

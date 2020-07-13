@@ -11,17 +11,17 @@
 <div class="row" style="margin:30px auto">
   <div class="col"></div>
   <div class="col-6">
-    <div class="alert alert-primary" role="alert">
+    <div class="alert alert-info" role="alert">
       로그인하세요
     </div>
     <form action="" method="post">
       {% csrf_token %}
 <!--      {{form.as_p}}-->
-      <input name="username" type="text" placeholder="사용자 이름">
+      <input name="username" type="text" placeholder="사용자 이름" style="margin-top:20px;">
       <br>
       <input name="password" type="password" placeholder="비밀번호">
       <br>
-      <input type="submit" value="Login" class="btn btn-outline-primary">
+      <input type="submit" value="Login" class="btn btn-outline-primary" style="margin-top:20px;">
     </form>
   </div>
   <div class="col"></div>
