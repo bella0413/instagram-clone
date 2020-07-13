@@ -3,8 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib import auth
-from django.contrib import messages
-# Create your views here.
+
 
 def login(request):
     if request.method == "POST":
@@ -37,10 +36,11 @@ def signup(request):
 
 
 def following(request):
-    # user_obj = get_object_or_404(get_user_model(), pk=user_id)
-    # if request.user in user_obj.followers.all():
-    #     user_obj.followers.remove(request.user)
-    # else:
-    #     user_obj.followers.add(request.user)
-    print(request.user.followings.all())
-    return render(request, 'accounts/following.html')
+    if request.method == "POST":
+        user_id = request.POST["username"]
+        user_obj = get_object_or_404(get_user_model(), username=user_id)
+        if request.user in user_obj.followers.all():
+            request.user.followers.remove(user_obj)
+        else:
+            request.user.followers.add(user_obj)
+    return render(request, 'accounts/following.html', {'following_list': request.user.followers.all()})
