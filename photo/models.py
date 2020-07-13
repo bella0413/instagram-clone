@@ -26,3 +26,7 @@ class Photo(models.Model):
     def get_absolute_url(self):
         return reverse('photo:detail', args=[self.id])
         # 상세 페이지로 이동하도록 absolute_url 설정, view에서 return super가 나오게 되면 absoulute_url이 실행
+#
+# class FollowRelation(BaseModel):
+#     follower = models.OneToOneField(User, related_name='follower', on_delete=models.CASCADE)
+#     followee = models.ManyToManyField(User, related_name='followee')
