@@ -39,8 +39,10 @@ def following(request):
     if request.method == "POST":
         user_id = request.POST["username"]
         user_obj = get_object_or_404(get_user_model(), username=user_id)
-        if request.user in user_obj.followers.all():
+        if user_obj in request.user.followers.all():
+            print(user_obj.username)
             request.user.followers.remove(user_obj)
         else:
+            print("no"+user_obj.username)
             request.user.followers.add(user_obj)
     return render(request, 'accounts/following.html', {'following_list': request.user.followers.all()})
