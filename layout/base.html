@@ -28,6 +28,9 @@
           <a class="nav-link" href="{% url 'photo:create' %}">Upload</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:following' %}">Followings</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'accounts:logout' %}">Logout<span class="sr-only">(current)</span></a>
         </li>
         {% else %}
